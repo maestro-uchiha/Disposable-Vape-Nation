@@ -1,0 +1,12 @@
+{
+  "ASD Content Block": {
+    "prefix": "asdcontent",
+    "body": [
+      "<!-- ASD:CONTENT_START -->",
+      "<h1>${1:Your Title}</h1>",
+      "<p>${2:Body paragraph…}</p>",
+      "<!-- ASD:CONTENT_END -->"
+    ],
+    "description": "Insert ASD content markers"
+  }
+}

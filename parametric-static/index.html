@@ -1,0 +1,159 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://maestro-uchiha.github.io/my-new-asd-site/">
+
+<meta name="robots" content="index,follow">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>My ASD Site | My ASD Site</title>
+  <meta name="description" content="Premium My ASD Site | quality, reliability, trust.">
+  <meta name="author" content="Maestro">
+<!-- Open Graph -->
+  <meta property="og:title" content="My ASD Site | My ASD Site">
+  <meta property="og:description" content="Premium My ASD Site | quality, reliability, trust.">
+<meta property="og:image" content="https://maestro-uchiha.github.io/my-new-asd-site/assets/img/og.jpeg">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.ico">
+
+  <!-- Early theme boot (prevents flash) -->
+  <script>
+    (function () {
+      try {
+        var key = 'asd-theme';
+        var saved = localStorage.getItem(key);
+        var theme = saved ? saved : (
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        );
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+<link rel="alternate" type="application/rss+xml"  title="My ASD Site RSS"  href="feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="My ASD Site Atom" href="atom.xml">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">My ASD Site</a></h1>
+
+    <!-- Mobile toggle -->
+    <button id="navToggle" class="nav-toggle"
+            aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <nav id="site-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog/">Blog</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="legal/privacy.html">Privacy</a></li>
+        <li><a href="legal/terms.html">Terms</a></li>
+        <li><a href="sitemap.html">Sitemap</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- KEEP CONTENT ON ONE LINE TO AVOID WHITESPACE GROWTH -->
+  <main><section class="hero">
+  <h1>My ASD Site</h1>
+  <p>Premium quality, reliability, and trust|built into every experience.</p>
+  <p class="link-row">
+    <a class="btn primary" href="about.html">Learn more</a>
+    <a class="btn ghost" href="blog/">Read the blog</a>
+    <a class="btn link" href="contact.html">Get in touch →</a>
+  </p>
+</section>
+
+<section class="features">
+  <h2 class="mt-0">Why Ace</h2>
+  <ul>
+    <li><strong>Top-tier materials</strong> | curated for longevity and performance.</li>
+    <li><strong>Honest design</strong> | simple, elegant, and functional.</li>
+    <li><strong>Built to last</strong> | fewer replacements, more value.</li>
+    <li><strong>Human support</strong> | real help when you need it.</li>
+  </ul>
+</section>
+
+<section class="highlights">
+  <h2 class="mt-0">Highlights</h2>
+  <p>Explore our latest updates, guides, and notes from the team.</p>
+</section>
+
+<section class="recent">
+  <h2 class="mt-0">Latest from the blog</h2>
+  <!-- The list below is auto-populated by bake.ps1 on each build -->
+  <!-- ASD:RECENT_POSTS_START -->
+<ul class="posts">
+<li><a href="blog/twelveth-post.html">Twelveth Post | Ace Ultra Premium</a><small> | 2025-08-25</small></li>
+<li><a href="blog/the-seventh-post.html">the-seventh-post | Ace Ultra Premium</a><small> | 2025-08-24</small></li>
+<li><a href="blog/tenth-post.html">Tenth Post | Ace Ultra Premium</a><small> | 2025-08-24</small></li>
+<li><a href="blog/the-eight-post-here.html">The Eight Post Here | Ace Ultra Premium</a><small> | 2025-08-24</small></li>
+<li><a href="blog/the-sixth-post.html">The Sixth Post | Ace Ultra Premium</a><small> | 2025-08-24</small></li>
+</ul>
+<!-- ASD:RECENT_POSTS_END -->
+
+  <p class="mt-2"><a href="blog/">See all posts →</a></p>
+</section>
+
+<section class="cta">
+  <h2 class="mt-0">Ready when you are</h2>
+  <p>Questions, ideas, or partnership requests? We’re listening.</p>
+  <p><a href="contact.html">Contact us →</a></p>
+</section></main>
+
+  <footer>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="blog/">Blog</a> |
+      <a href="search.html">Search</a> |
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="legal/privacy.html">Privacy</a> |
+      <a href="legal/terms.html">Terms</a> |
+      <a href="sitemap.html">Sitemap</a>
+    </p>
+    <p>&copy; 2025 My ASD Site. All rights reserved.</p>
+  </footer>
+
+  <!-- Single rectangular theme toggle -->
+  <button
+    class="asd-theme-toggle"
+    id="asd-theme-toggle"
+    type="button"
+    title="Toggle theme"
+    aria-label="Toggle theme"
+    onclick="(function(d){var k='asd-theme';var cur=d.getAttribute('data-theme')||'light';var nxt=(cur==='dark'?'light':'dark');d.setAttribute('data-theme',nxt);try{localStorage.setItem(k,nxt);}catch(e){} })(document.documentElement)">
+    🌙 / ☀
+  </button>
+
+  <script>
+    /* Mobile menu */
+    (function () {
+      var btn = document.getElementById('navToggle');
+      var nav = document.getElementById('site-nav');
+      if (!btn || !nav) return;
+
+      function set(open) {
+        btn.setAttribute('aria-expanded', open);
+        nav.classList.toggle('open', open);
+        btn.classList.toggle('is-active', open);
+      }
+      btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+      nav.addEventListener('click', function (e) { if (e.target && e.target.tagName === 'A') set(false); });
+    })();
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+﻿# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+temp/
+tmp/
+
+# Build artifacts (if you generate any)
+dist/
+out/
+
+# Node (if ever used)
+node_modules/

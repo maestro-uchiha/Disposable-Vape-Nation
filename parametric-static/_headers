@@ -1,0 +1,27 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Cache-Control: public, max-age=3600
+
+/sitemap.xml
+  X-Robots-Tag: noindex
+
+/feed.xml
+  X-Robots-Tag: noindex
+
+/atom.xml
+  X-Robots-Tag: noindex
+
+/assets/css/*
+  X-Robots-Tag: noindex
+
+/*.css
+  X-Robots-Tag: noindex
+
+/assets/js/*
+  X-Robots-Tag: noindex
+
+/*.js
+  X-Robots-Tag: noindex

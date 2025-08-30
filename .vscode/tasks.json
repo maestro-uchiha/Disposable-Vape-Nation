@@ -1,0 +1,108 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "ASD: Wizard",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File",
+        "${workspaceFolder}/parametric-static/scripts/post-wizard.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Build blog index",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File",
+        "${workspaceFolder}/parametric-static/scripts/build-blog-index.ps1",
+        "-PageSize",
+        "${input:BlogPageSize}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Bake",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File",
+        "${workspaceFolder}/parametric-static/scripts/bake.ps1"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Build + Bake",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "& '${workspaceFolder}/parametric-static/scripts/build-blog-index.ps1' -PageSize ${input:BlogPageSize}; & '${workspaceFolder}/parametric-static/scripts/bake.ps1'"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Test wizard",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File",
+        "${workspaceFolder}/parametric-static/scripts/test-wizard.ps1",
+        "-PageSize",
+        "${input:BlogPageSize}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Commit all",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-File",
+        "${workspaceFolder}/parametric-static/scripts/commit-all.ps1",
+        "-Message",
+        "${input:CommitMessage}",
+        "-Push"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "ASD: Open config.json",
+      "type": "shell",
+      "command": "code",
+      "args": [
+        "${workspaceFolder}/config.json"
+      ],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "BlogPageSize",
+      "type": "pickString",
+      "description": "Posts per page",
+      "options": ["5", "10", "15", "20"],
+      "default": "10"
+    },
+    {
+      "id": "CommitMessage",
+      "type": "promptString",
+      "description": "Commit message",
+      "default": "ASD: update content & bake"
+    }
+  ]
+}

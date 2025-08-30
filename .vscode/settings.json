@@ -1,0 +1,6 @@
+// .vscode/settings.json
+{
+  "files.associations": { "*.ps1": "powershell" },
+  "files.eol": "\r\n",
+  "files.encoding": "utf8bom"
+}

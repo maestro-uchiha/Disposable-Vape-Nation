@@ -1,0 +1,6 @@
+﻿{
+    "from":  "/legacy",
+    "to":  "/blog/hello-asd.html",
+    "code":  301,
+    "disabled":  false
+}

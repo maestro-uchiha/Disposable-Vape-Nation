@@ -1,0 +1,68 @@
+﻿# Allow trusted search engine bots
+User-agent: Googlebot
+Disallow:
+
+User-agent: Bingbot
+Disallow:
+
+User-agent: Slurp
+Disallow:
+
+User-agent: DuckDuckBot
+Disallow:
+
+User-agent: YandexBot
+Disallow:
+
+# Allow reputable AI bots
+User-agent: ChatGPT-User
+Disallow:
+
+User-agent: GPTBot
+Disallow:
+
+User-agent: PerplexityBot
+Disallow:
+
+User-agent: YouBot
+Disallow:
+
+User-agent: Google-Extended
+Disallow:
+
+User-agent: AnthropicBot
+Disallow:
+
+User-agent: Neevabot
+Disallow:
+
+User-agent: Amazonbot
+Disallow:
+
+# Block SEO/backlink crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: Ubersuggest
+Disallow: /
+
+# Catch-all: Block everything else
+User-agent: *
+Disallow: /
+
+# Sitemap location
+
+Sitemap: https://maestro-uchiha.github.io/my-new-asd-site/sitemap.xml
+
