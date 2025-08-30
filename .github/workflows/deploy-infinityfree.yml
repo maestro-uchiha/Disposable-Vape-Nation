@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: FTP deploy (parametric-static → disposable-vape-nation/htdocs)
+      - name: FTP deploy (parametric-static → disposable-vape-nation.42web.io/htdocs)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server:     ${{ secrets.INF_FTP_HOST }}
