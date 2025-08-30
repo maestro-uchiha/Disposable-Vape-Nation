@@ -64,5 +64,5 @@ Disallow: /
 
 # Sitemap location
 
-Sitemap: https://maestro-uchiha.github.io/my-new-asd-site/sitemap.xml
+Sitemap: https://disposable-vape-nation.42web.io/sitemap.xml
 

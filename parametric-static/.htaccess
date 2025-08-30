@@ -1,0 +1,71 @@
+﻿# /htdocs/.htaccess
+Options -Indexes
+
+# Use our custom 404 (ASD rule: 404.html at root)
+ErrorDocument 404 /404.html
+
+# (Optional) Basic caching: safe if mod_headers is available
+<IfModule mod_headers.c>
+  <FilesMatch "\.html?$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|png|jpe?g|gif|svg|ico|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+
+
+# BLOCK'EM RATS
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Block empty user agents
+RewriteCond %{HTTP_USER_AGENT} ^\s*$ [OR]
+
+# Block fake browser-like bots pretending to be Mozilla
+RewriteCond %{HTTP_USER_AGENT} ^Mozilla [NC]
+
+# Allow real browsers
+RewriteCond %{HTTP_USER_AGENT} !chrome [NC]
+RewriteCond %{HTTP_USER_AGENT} !safari [NC]
+RewriteCond %{HTTP_USER_AGENT} !firefox [NC]
+RewriteCond %{HTTP_USER_AGENT} !edge [NC]
+RewriteCond %{HTTP_USER_AGENT} !brave [NC]
+RewriteCond %{HTTP_USER_AGENT} !opera [NC]
+RewriteCond %{HTTP_USER_AGENT} !vivaldi [NC]
+RewriteCond %{HTTP_USER_AGENT} !samsungbrowser [NC]
+
+# Allow social media crawlers
+RewriteCond %{HTTP_USER_AGENT} !facebookexternalhit [NC]
+RewriteCond %{HTTP_USER_AGENT} !linkedinbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !twitterbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !instagram [NC]
+RewriteCond %{HTTP_USER_AGENT} !pinterest [NC]
+RewriteCond %{HTTP_USER_AGENT} !tiktok [NC]
+RewriteCond %{HTTP_USER_AGENT} !whatsapp [NC]
+
+# Allow real search engine bots
+RewriteCond %{HTTP_USER_AGENT} !googlebot [NC]
+RewriteCond %{HTTP_USER_AGENT} !bingbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !slurp [NC]
+RewriteCond %{HTTP_USER_AGENT} !duckduckbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !yandexbot [NC]
+
+# Allow AI search bots
+RewriteCond %{HTTP_USER_AGENT} !chatgpt-user [NC]
+RewriteCond %{HTTP_USER_AGENT} !gptbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !perplexitybot [NC]
+RewriteCond %{HTTP_USER_AGENT} !youbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !google-extended [NC]
+RewriteCond %{HTTP_USER_AGENT} !anthropicbot [NC]
+RewriteCond %{HTTP_USER_AGENT} !neevabot [NC]
+RewriteCond %{HTTP_USER_AGENT} !amazonbot [NC]
+
+# Block everything else
+RewriteRule .* - [F,L]
+
+# Block unknown bots from robots.txt and sitemap access
+RewriteCond %{REQUEST_URI} (robots\.txt|sitemap.*\.xml)$ [NC]
+RewriteCond %{HTTP_USER_AGENT} !(googlebot|bingbot|slurp|duckduckbot|yandexbot|ahrefsbot|semrushbot|mj12bot|rogerbot|dotbot|ubersuggest|chatgpt-user|gptbot|perplexitybot|youbot|google-extended|anthropicbot|neevabot|amazonbot) [NC]
+RewriteRule ^.*$ - [F,L]
+</IfModule>

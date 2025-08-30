@@ -1,0 +1,88 @@
+﻿name: Deploy to InfinityFree (parametric-static)
+
+on:
+  push:
+    branches: [ "main" ]
+    # Optional: only run when site files or this workflow change
+    # paths:
+    #   - 'parametric-static/**'
+    #   - '.github/workflows/deploy-infinityfree.yml'
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-infinityfree
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-ftps:
+    name: Deploy over FTPS (explicit :21)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: FTPS deploy (parametric-static → /htdocs)
+        id: ftps
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server:    ${{ secrets.INF_FTP_HOST }}
+          username:  ${{ secrets.INF_FTP_USER }}
+          password:  ${{ secrets.INF_FTP_PASS }}
+          protocol:  ftps            # try FTPS first (explicit TLS on port 21)
+          port:      21
+          local-dir: parametric-static/
+          server-dir: /htdocs/
+          log-level: verbose
+          # Keep your repo clean on the host; exclude scripts/backups/executables
+          exclude: |
+            scripts/**
+            scripts.__bak__*/**
+            **/*.ps1
+            **/*.psm1
+            **/*.bat
+            **/*.cmd
+            **/*.sh
+            **/*.py
+            **/*.exe
+            **/*.dll
+            **/*.msi
+            **/.DS_Store
+            **/Thumbs.db
+
+  deploy-ftp-fallback:
+    name: Fallback deploy over plain FTP (insecure)
+    needs: deploy-ftps
+    if: needs.deploy-ftps.result == 'failure'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: FTP deploy (parametric-static → /htdocs)
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server:    ${{ secrets.INF_FTP_HOST }}
+          username:  ${{ secrets.INF_FTP_USER }}
+          password:  ${{ secrets.INF_FTP_PASS }}
+          protocol:  ftp             # fallback when FTPS handshake fails
+          port:      21
+          local-dir: parametric-static/
+          server-dir: /htdocs/
+          log-level: verbose
+          exclude: |
+            scripts/**
+            scripts.__bak__*/**
+            **/*.ps1
+            **/*.psm1
+            **/*.bat
+            **/*.cmd
+            **/*.sh
+            **/*.py
+            **/*.exe
+            **/*.dll
+            **/*.msi
+            **/.DS_Store
+            **/Thumbs.db
