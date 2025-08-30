@@ -16,14 +16,30 @@ permissions:
   contents: read
 
 jobs:
+  preflight:
+    name: Preflight checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show parametric-static tree
+        run: |
+          echo "===== LOCAL LISTING (parametric-static) ====="
+          ls -la parametric-static | sed -n '1,200p' || true
+      - name: Fail if parametric-static is empty
+        run: |
+          if [ ! -d parametric-static ] || [ -z "$(ls -A parametric-static 2>/dev/null)" ]; then
+            echo "parametric-static/ is missing or empty. Bake locally and commit the baked files."
+            exit 1
+          fi
+
   deploy-ftps:
     name: Deploy over FTPS (explicit :21)
+    needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
-      - name: FTPS deploy (parametric-static → /htdocs)
+      - name: FTPS deploy (parametric-static → disposable-vape-nation.42web.io/htdocs/)
         id: ftps
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -32,9 +48,11 @@ jobs:
           password:   ${{ secrets.INF_FTP_PASS }}
           protocol:   ftps
           port:       21
+          passive:    true
           local-dir:  parametric-static/
-          server-dir: /htdocs/
+          server-dir: disposable-vape-nation.42web.io/htdocs/
           log-level:  verbose
+          dangerous-clean-slate: false
           exclude: |
             scripts/**
             scripts.__bak__*/**
@@ -58,8 +76,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-
-      - name: FTP deploy (parametric-static → /htdocs)
+      - name: FTP deploy (parametric-static → disposable-vape-nation.42web.io/htdocs/)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server:     ${{ secrets.INF_FTP_HOST }}
@@ -67,9 +84,11 @@ jobs:
           password:   ${{ secrets.INF_FTP_PASS }}
           protocol:   ftp
           port:       21
+          passive:    true
           local-dir:  parametric-static/
-          server-dir: /disposable-vape-nation.42web.io/htdocs/
+          server-dir: disposable-vape-nation.42web.io/htdocs/
           log-level:  verbose
+          dangerous-clean-slate: false
           exclude: |
             scripts/**
             scripts.__bak__*/**
